@@ -40,7 +40,7 @@
 <div id="content">
 
     <h1>ERROR PAGE </h1>
-    <p> THIS IS ERROR PAGE FOR ERRORS <br/>
+    <p> THIS IS ERROR PAGE FOR ERRORS lalala <br/>
     .. TRY AGAIN!!</p>
     
     <p>Message: ${param.message}</p>
