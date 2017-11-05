@@ -44,11 +44,11 @@
 <table> 
 <tr><td>Recipient: </td><td><input type="text" name="recipient" value="<% if(request.getParameter("recipient")!=null){ out.print(request.getParameter("recipient")); } %>"/></td></tr>
 <tr><td>Subject :</td><td><input type="text" name="subject"/></td></tr>
-<tr><td>Message :</td><td><textarea name="msg"></textarea></td></tr>
+<tr><td>Message :</td><td><textarea name="msg" ></textarea></td></tr>
 <tr> <td><input type="hidden" name="sender" value="<%=session.getAttribute("user")%>"/></td></tr>
 <tr><td><input type="submit" name="send" value="send"/></td></tr>
 </table>  
-</form>
+</form> 
 </div>
 <div id="footer">
 
