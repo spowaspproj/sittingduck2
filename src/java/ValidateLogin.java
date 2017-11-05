@@ -38,7 +38,7 @@ public class ValidateLogin extends HttpServlet {
                 }
                catch(Exception ex)
                 {
-                           response.sendRedirect("login.jsp?err=something went wrong");
+                           response.sendRedirect("login.jsp?err=Something went wrong, Please try again");
                  }
         
         
