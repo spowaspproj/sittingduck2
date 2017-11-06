@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Sitting Ducks</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
+        
+       
     </head>
     <%
         String username = "";
@@ -29,22 +31,14 @@
                 <img src="images/Banner.jpg" alt="" width="720" height="160" />
             </div>
             <div id="navigation">
+                
+                <jsp:include page= "navigationMenu.jsp"></jsp:include>
+                
+                </div>
+                <br></br>
+                <div id="content">
 
-                Menu
-
-                <hr />
-                <a href="index.jsp" class="navigation">Home</a>
-                <a href='login.jsp' class="navigation">Login</a>
-                <a href="index.jsp" class="navigation">Logout</a>
-                <a href="search.jsp" class="navigation">Search</a>
-                <a href="documents.jsp" class="navigation">Documents</a>
-                <a href="Messages.jsp" class="navigation">Messages</a>
-                <a href="SendMessage.jsp" class="navigation">Send Message</a>
-            </div>
-            <br></br>
-            <div id="content">
-
-                <h1>Message</h1>
+                    <h1>Message</h1>
                 <%    String msgid = request.getParameter("msgid");
                     try {
                         Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));

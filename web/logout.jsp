@@ -1,25 +1,22 @@
 <%-- 
-    Document   : members
-    Created on : 16-Oct-2016, 11:46:42
-    Author     : stephen
---%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    Document   : logout
+    Created on : Nov 6, 2017, 3:01:42 PM
+    Author     : Win7
 
+//NEW CODE 06 NOVEMBER
+--%>
+
+<%@page import="com.sittingducks.files.ValidateLogin"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Sitting Ducks</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
-        
+       
     </head>
-    <%
-        String username = "";
-        String password = "";
 
-
-    %>
     <body>
         <div id="main">
             <div id="top-nav">
@@ -33,23 +30,35 @@
             <div id="navigation">
 
                 <jsp:include page= "navigationMenu.jsp"></jsp:include>
-                
+                </div>
+                <br></br>
+                <div id="content">
 
-            </div>
-            <br></br>
-            <div id="content">
 
-                <h1>WELCOME Members</h1>
+                <%
+
+                    session.setAttribute("isLogin", false);
+                    session.invalidate();
+                    
+                    
+                    System.out.println("logout pring" + session.getId());
+
+
+                %>
+
+
+                <h1>YOU ARE LOGOUT!</h1>
                 
-                Welcome ${sessionScope['user']}
-                <p>This is the <strong>Members</strong> section. You can't really do anything special here, <br/>
-                    but if you are reading this, at least you know the login worked :D</p>
+                <%
+                    response.sendRedirect("index.jsp");
+                    
+                %>
 
             </div>
             <div id="footer">
 
                 <hr />
-                Copyright © 2016 | Sitting Ducks
+                Copyright © 2005 | All Rights Reserved
 
             </div>
 
@@ -60,3 +69,6 @@
     </body>
 
 </html>
+
+
+

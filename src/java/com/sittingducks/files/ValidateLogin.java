@@ -1,11 +1,10 @@
 package com.sittingducks.files;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -15,48 +14,58 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author stephen
+ * @author
  */
 public class ValidateLogin extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   
+protected static HttpSession session;
+public static boolean redirect;
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String user=request.getParameter("username").trim();
-        String pass=request.getParameter("password").trim();
-        
-        try
-             {
-                 Connection con=new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
-                    if(con!=null && !con.isClosed())
-                               {
-                                   HttpSession session=request.getSession();
-                                   ResultSet rs=null;
-                                   
-                                   //NEW CODE
-                                   PreparedStatement pst = con.prepareStatement("select * from users where name=? and password=?");
-                                   pst.setString(1, user);
-                                   pst.setString(2, pass);
-                                   rs= pst.executeQuery();
-                                   
-                                   session.setAttribute("user", user);
-                                   Cookie privilege=new Cookie("privilege","user");
-                                   response.addCookie(privilege);
-                                   if(rs != null && rs.next()){
-                                       response.sendRedirect("members.jsp");
-                                   }
-                                   else{
-                                       response.sendRedirect("login.jsp?err=something went wrong");
-                                   }
-                                    
-                               }
+
+        String user = request.getParameter("username").trim();
+        String pass = request.getParameter("password").trim();
+
+        try {
+            Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
+            if (con != null && !con.isClosed()) {
+                 session = request.getSession();
+
+                //NEW CODE 06 NOVEMBER COOKIE LIFETIME SET TO 1 MIN.
+                session.setAttribute("user", user);
+                
+                //NEW CODE 05 NOVEMBER
+                ResultSet rs = null;
+                PreparedStatement pst = con.prepareStatement("select * from users where name=? and password=?");
+                pst.setString(1, user);
+                pst.setString(2, pass);
+                rs = pst.executeQuery();
+
+                Cookie privilege = new Cookie("privilege", "user");
+
+                //NEW CODE 06 NOVEMBER COOKIE LIFETIME SET TO 1 MIN.
+                privilege.setMaxAge(1 * 60);
+
+                response.addCookie(privilege);
+
+                if (rs != null && rs.next()) {
+
+                    session.setAttribute("isLogin", true);
+                    session.setMaxInactiveInterval(1 * 60);
+
+                    response.sendRedirect("members.jsp");
+
+                } else {
+                    //NEW CODE 06 NOVEMBER                                        
+                    String message = "WRONG CREDENTIALS, TRY AGAIN ";
+                    response.sendRedirect("errorpage.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
                 }
-               catch(Exception ex)
-                {
-                           response.sendRedirect("login.jsp?err=something went wrong");
-                 }
-        
-        
+
+            }
+        } catch (Exception ex) {
+            response.sendRedirect("login.jsp?err=something went wrong");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
