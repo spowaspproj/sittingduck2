@@ -37,7 +37,7 @@
 
                 <%
 
-                    session.setAttribute("isLogin", false);
+                    session.removeAttribute("isLogin");
                     session.invalidate();
                     ValidateLogin.redirect = false;
                 %>
