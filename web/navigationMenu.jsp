@@ -7,17 +7,24 @@
 
 <jsp:include page= "redirect.jsp"></jsp:include>
 <%
-    
+
     boolean isLoggedIn;
 
     if (session.getAttribute("isLogin") != null && !session.getAttribute("isLogin").equals("")) {
         isLoggedIn = true;
     } else {
-         isLoggedIn = false;
-     }%>
+        isLoggedIn = false;
+    }%>
 
-Menu
+Menu </br>
 
+<%
+    if (isLoggedIn) {
+%>
+${sessionScope['user']}
+<%
+    }
+%>
 <hr />
 <a href="index.jsp" class="navigation">Home</a>
 <a href="search.jsp" class="navigation">Search</a>

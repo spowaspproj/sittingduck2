@@ -49,10 +49,10 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                 response.addCookie(privilege);
 
                 if (rs != null && rs.next()) {
-
+                    
+                    session.setMaxInactiveInterval(1*60); //in seconds
                     session.setAttribute("isLogin", true);
-                    session.setMaxInactiveInterval(1 * 60);
-
+                    redirect = false;
                     response.sendRedirect("members.jsp");
 
                 } else {
