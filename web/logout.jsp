@@ -37,8 +37,9 @@
 
                 <%
 
-                    session.removeAttribute("isLogin");
+                    
                     session.invalidate();
+                    ValidateLogin.isLogin = false;
                     ValidateLogin.redirect = false;
                 %>
 
@@ -46,7 +47,7 @@
                 <h1>YOU ARE LOGOUT!</h1>
 
                 <%
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("index.jsp?message=YOU ARE LOGOUT!");
 
                 %>
 

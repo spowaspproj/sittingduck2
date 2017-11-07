@@ -5,16 +5,12 @@
 --%>
 
 
+<%@page import="com.sittingducks.files.ValidateLogin"%>
 <jsp:include page= "redirect.jsp"></jsp:include>
 <%
 
-    boolean isLoggedIn;
-
-    if (session.getAttribute("isLogin") != null && !session.getAttribute("isLogin").equals("")) {
-        isLoggedIn = true;
-    } else {
-        isLoggedIn = false;
-    }%>
+    boolean isLoggedIn = ValidateLogin.isLogin;
+%>
 
 Menu </br>
 

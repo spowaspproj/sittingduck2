@@ -34,6 +34,7 @@
     <h1>Welcome</h1>
     <p> Welcome to the <b>Sitting Ducks</b> Website. Possibly the worst Website ever built. <br/>
     Your mission is to find any vulnerability you can, exploit it and then fix it.. Simple!!</p>
+    <p>${param.message}</p>
 </div>
 <div id="footer">
 

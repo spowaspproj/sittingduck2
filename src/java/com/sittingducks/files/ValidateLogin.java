@@ -20,11 +20,18 @@ public class ValidateLogin extends HttpServlet {
    
 protected static HttpSession session;
 public static boolean redirect;
+public static boolean isLogin;
+
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String user = request.getParameter("username").trim();
-        String pass = request.getParameter("password").trim();
+    NormalizeValidate input = new NormalizeValidate();
+    
+        String userNoValid = request.getParameter("username").trim();
+        String passNoValid = request.getParameter("password").trim();
+        
+        String user = input.normalizeValidate(userNoValid);
+        String pass = input.normalizeValidate(passNoValid);
 
         try {
             Connection con = new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
@@ -51,7 +58,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                 if (rs != null && rs.next()) {
                     
                     session.setMaxInactiveInterval(1*60); //in seconds
-                    session.setAttribute("isLogin", true);
+                    isLogin = true;
                     redirect = false;
                     response.sendRedirect("members.jsp");
 

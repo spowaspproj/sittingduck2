@@ -54,9 +54,8 @@
   
     %>
     
-            Search Results for <c:out value="${searchedName}" escapeXml="true"/>
-            <br/>...
-            <br/>...
+    Search Results for <p><c:out value="${searchedName}" escapeXml="false"/></p>
+            
     <%
     //Show result pages
 
