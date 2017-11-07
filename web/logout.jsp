@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Sitting Ducks</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
-       
+
     </head>
 
     <body>
@@ -39,19 +39,15 @@
 
                     session.setAttribute("isLogin", false);
                     session.invalidate();
-                    
-                    
-                    System.out.println("logout pring" + session.getId());
-
-
+                    ValidateLogin.redirect = false;
                 %>
 
 
                 <h1>YOU ARE LOGOUT!</h1>
-                
+
                 <%
                     response.sendRedirect("index.jsp");
-                    
+
                 %>
 
             </div>
@@ -61,9 +57,6 @@
                 Copyright © 2005 | All Rights Reserved
 
             </div>
-
-
-
         </div>
 
     </body>
