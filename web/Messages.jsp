@@ -4,6 +4,8 @@
     Author     : Stephen
 --%>
 
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.sittingducks.files.ValidateLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -42,14 +44,17 @@
 
     <h1>Messages List</h1>
 <%
-   
-       Connection con=new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
+   String user = ValidateLogin.userNoValid;
+    
+   Connection con=new DBConnect().connect(getServletContext().getRealPath("/WEB-INF/config.properties"));
         if(con!=null && !con.isClosed())
           {
-             Statement stmt = con.createStatement();
-             ResultSet rs =null;
-             rs=stmt.executeQuery("select * from UserMessages");
-             out.print("</br></br>Message: </br>");
+              ResultSet rs = null;
+                PreparedStatement pst = con.prepareStatement("select * from UserMessages where recipient=?");
+                pst.setString(1, user);
+                rs = pst.executeQuery(); 
+         
+             out.print("</br></br>Messages: </br>");
              out.println("<ol>");
              while (rs.next()) 
             {

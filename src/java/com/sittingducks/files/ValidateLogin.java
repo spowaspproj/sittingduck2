@@ -21,14 +21,17 @@ public class ValidateLogin extends HttpServlet {
 protected static HttpSession session;
 public static boolean redirect;
 public static boolean isLogin;
+public static String userNoValid;
 
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     NormalizeValidate input = new NormalizeValidate();
     
-        String userNoValid = request.getParameter("username").trim();
+        userNoValid = request.getParameter("username").trim();
         String passNoValid = request.getParameter("password").trim();
+        
+        
         
         String user = input.normalizeValidate(userNoValid);
         String pass = input.normalizeValidate(passNoValid);

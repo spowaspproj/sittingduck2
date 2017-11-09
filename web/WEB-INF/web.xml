@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <!-- CSRF Prevention Filter WHITELIST   -->
+    
+<!--    THIS HAVE TO BE DONE TOGETHER WITH TOKENS https://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CSRF_Prevention_Filter -->
+    
+<!--<filter>
+    <filter-name>CSRFPreventionFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CsrfPreventionFilter</filter-class>
+
+    <init-param>
+        <param-name>entryPoints</param-name>
+        <param-value>/images/Banner.jpg,/images/bg.jpg,/search.jsp,/index.jsp,/style.css,/DisplayMessage.jsp,/Messages.jsp,/SendMessage.jsp,/documents.jsp,/members.jsp,/login.jsp,/logout.jsp,/members.jsp,/errorpage.jsp</param-value>
+   </init-param>
+</filter>
+
+<filter-mapping>
+    <filter-name>CSRFPreventionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>  
+    -->
     <servlet>
         <servlet-name>ValidateLogin</servlet-name>
         <servlet-class>com.sittingducks.files.ValidateLogin</servlet-class>
