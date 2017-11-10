@@ -34,6 +34,18 @@ if (matcher.find()) {
   // Found blacklisted tag
   
   System.out.println("LOGIN INPUT: illegal characters found");
+            
+            // Custom Input Validation
+  
+           s = s.replace("<", " ");
+           s = s.replace("img", " ");
+           s = s.replace(">", " ");
+           s = s.replace("alt=", " ");
+           s = s.replace("scr=", " ");
+           s = s.replace("script", " ");
+           s = s.replace("style=", " ");
+           s = s.replace("src=","");
+           s = s.replace("https://", " ");
   
 }else {
  

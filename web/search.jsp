@@ -6,6 +6,7 @@
 
 
 
+<%@page import="com.sittingducks.files.NormalizeValidate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -51,10 +52,13 @@
     
     if (searchedName != null)
     {
-  
+        NormalizeValidate input = new NormalizeValidate();
+        String result = input.normalizeValidate(searchedName);
     %>
     
-    Search Results for <p><c:out value="${searchedName}" escapeXml="false"/></p>
+    Search Results for <p><c:out value="${result}" escapeXml="true"/></p>
+    
+    </br> ...
             
     <%
     //Show result pages

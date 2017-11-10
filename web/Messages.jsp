@@ -54,7 +54,12 @@
                 pst.setString(1, user);
                 rs = pst.executeQuery(); 
          
-             out.print("</br></br>Messages: </br>");
+             out.print("</br></br>Messages for user:  </br>");
+             
+             %> 
+             ${sessionScope['user']} 
+             <%
+             
              out.println("<ol>");
              while (rs.next()) 
             {
